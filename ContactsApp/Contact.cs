@@ -27,7 +27,7 @@ namespace ContactsApp
             Email = email;
             IdVK = idVK;
             BirthDate = birthDate;
-            PhoneNumber = phoneNumber;
+            ContactNumber = phoneNumber;
         }
         /// <summary>
         /// Возвращает и задает имя (не длиннее 50 символов)
@@ -75,6 +75,7 @@ namespace ContactsApp
                         _email = value;
                     }
                 }
+                //дописать проверку на то что это имейл
             }
         }
         /// <summary>
@@ -97,24 +98,22 @@ namespace ContactsApp
         /// </summary>
         public DateTime BirthDate { 
             get => _birthDate;
-            set {
-                if(_birthDate != value)
+            set
+            {
+                if (value.Year < 1900)
                 {
-                    if (value.Year > 1900)
-                    {
-                        _birthDate = value;
-                    }
-                    else
-                    {
-                        throw new ArgumentException("Ну не мог он родиться раньше 1900 года");
-                    }
+                    throw new ArgumentException("Ну не мог он родиться раньше 1900 года");
+                }
+                else if (_birthDate != value)
+                {
+                    _birthDate = value;
                 }
             }
         }
         /// <summary>
         /// Возвращает и задает номер телефона
         /// </summary>
-        public PhoneNumber PhoneNumber { 
+        public PhoneNumber ContactNumber { 
             get => _phoneNumber;
             set {
                 if(_phoneNumber != value)
@@ -126,7 +125,7 @@ namespace ContactsApp
 
         public object Clone()
         {
-            return new Contact(Name, Surname, Email, IdVK, BirthDate, PhoneNumber);
+            return new Contact(Name, Surname, Email, IdVK, BirthDate, ContactNumber);
         }
     }
 }

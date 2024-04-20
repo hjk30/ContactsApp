@@ -12,9 +12,9 @@ using ContactsApp;
 
 namespace ContactAppUI
 {
-    public partial class Form1 : Form
+    public partial class ContactAppForm : Form
     {
-        public Form1()
+        public ContactAppForm()
         {
             InitializeComponent();
         }
@@ -51,21 +51,30 @@ namespace ContactAppUI
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            string name = nameTextBox.Text;
-            string surname = surnameTextBox.Text;
-            string email = emailTextBox.Text;
-            string idVK = VKTextBox.Text;
-            DateTime birthDate = birthDateTime.Value;
-            PhoneNumber phoneNumber = new PhoneNumber((long)Convert.ToDouble(phoneTextBox.Text));
-            Contact contact = new Contact(name, surname, email, idVK, birthDate, phoneNumber);
+            try
+            {
+                string name = nameTextBox.Text;
+                string surname = surnameTextBox.Text;
+                string email = emailTextBox.Text;
+                string idVK = VKTextBox.Text;
+                DateTime birthDate = birthDateTime.Value;
+                PhoneNumber phoneNumber = new PhoneNumber((long)Convert.ToDouble(phoneTextBox.Text));
+                Contact contact = new Contact(name, surname, email, idVK, birthDate, phoneNumber);
 
-            var contacts = new Dictionary<string, Contact>();
-            contacts.Add("0", contact);
-         
-            Project project = new Project(contacts);
+                var contacts = new Dictionary<string, Contact>();
+                contacts.Add("0", contact);
 
-            ProjectManager.SaveToFile(project);
-            MessageBox.Show("Saved");
+                Project project = new Project(contacts);
+
+                ProjectManager.SaveToFile(project);
+                MessageBox.Show("Saved");
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            
         }
 
         private void loadButton_Click(object sender, EventArgs e)
@@ -79,7 +88,8 @@ namespace ContactAppUI
             emailTextBox.Text = contact.Email;
             VKTextBox.Text = contact.IdVK;
             birthDateTime.Value = contact.BirthDate;
-            phoneTextBox.Text = contact.PhoneNumber.Number.ToString();
+            phoneTextBox.Text = contact.ContactNumber.Number.ToString();
         }
+
     }
 }
