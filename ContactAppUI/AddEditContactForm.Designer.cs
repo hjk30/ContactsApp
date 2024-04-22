@@ -122,7 +122,6 @@
             this.surnameTextBox.Name = "surnameTextBox";
             this.surnameTextBox.Size = new System.Drawing.Size(358, 20);
             this.surnameTextBox.TabIndex = 1;
-            this.surnameTextBox.Text = "Шифман";
             // 
             // label2
             // 
@@ -153,7 +152,6 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(358, 20);
             this.nameTextBox.TabIndex = 4;
-            this.nameTextBox.Text = "Демид";
             // 
             // label1
             // 
@@ -176,7 +174,6 @@
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(358, 20);
             this.phoneTextBox.TabIndex = 6;
-            this.phoneTextBox.Text = "77712525329";
             // 
             // emailTextBox
             // 
@@ -186,7 +183,6 @@
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(358, 20);
             this.emailTextBox.TabIndex = 8;
-            this.emailTextBox.Text = "demid_postup@mail.ru";
             // 
             // VKTextBox
             // 
@@ -196,7 +192,6 @@
             this.VKTextBox.Name = "VKTextBox";
             this.VKTextBox.Size = new System.Drawing.Size(358, 20);
             this.VKTextBox.TabIndex = 10;
-            this.VKTextBox.Text = "312671324";
             // 
             // label4
             // 
@@ -219,6 +214,7 @@
             this.ConfirmButton.TabIndex = 15;
             this.ConfirmButton.Text = "Ок";
             this.ConfirmButton.UseVisualStyleBackColor = true;
+            this.ConfirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
             // 
             // CancelButton
             // 
@@ -228,6 +224,7 @@
             this.CancelButton.TabIndex = 16;
             this.CancelButton.Text = "Отмена";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // AddEditContactForm
             // 
@@ -240,6 +237,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AddEditContactForm";
             this.Text = "Add/Edit Contact";
+            this.Shown += new System.EventHandler(this.AddEditContactForm_Shown);
             this.CurrentContactTableLayoutPanel.ResumeLayout(false);
             this.CurrentContactTableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);

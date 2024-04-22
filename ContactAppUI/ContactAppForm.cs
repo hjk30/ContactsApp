@@ -14,82 +14,70 @@ namespace ContactAppUI
 {
     public partial class ContactAppForm : Form
     {
+        Project _contactsProject;
+
+        public Project ContactsProject { get => _contactsProject; set => _contactsProject = value; }
+
         public ContactAppForm()
         {
             InitializeComponent();
+            //SaveAll();
+            ContactsProject = ProjectManager.LoadFromFile();
+            RecreateContactList();
         }
-
-        private void surnameTextBox_TextChanged(object sender, EventArgs e)
+        void RecreateContactList(int defaultSelectedIndex = 0)
         {
-
-        }
-
-        private void nameTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void birthDateTime_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void phoneTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void emailTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void VKTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            try
+            var contactNames = ContactsProject.Contacts.ToArray();
+            ContactsListBox.Items.Clear();
+            for (int i = 0; i < contactNames.Length; i++)
             {
-                string name = nameTextBox.Text;
-                string surname = surnameTextBox.Text;
-                string email = emailTextBox.Text;
-                string idVK = VKTextBox.Text;
-                DateTime birthDate = birthDateTime.Value;
-                PhoneNumber phoneNumber = new PhoneNumber((long)Convert.ToDouble(phoneTextBox.Text));
-                Contact contact = new Contact(name, surname, email, idVK, birthDate, phoneNumber);
-
-                var contacts = new Dictionary<string, Contact>();
-                contacts.Add("0", contact);
-
-                Project project = new Project(contacts);
-
-                ProjectManager.SaveToFile(project);
-                MessageBox.Show("Saved");
-
+                ContactsListBox.Items.Add(contactNames[i].Surname + " " + contactNames[i].Name);
             }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message);
-            }
-            
+            ContactsListBox.SelectedIndex = defaultSelectedIndex;
+            ProjectManager.SaveToFile(ContactsProject);
         }
-
-        private void loadButton_Click(object sender, EventArgs e)
+        private void AddContactButton_Click(object sender, EventArgs e)
         {
-            Project project = ProjectManager.LoadFromFile();
-
-            var contact = project.Contacts["0"];
+            AddEditContactForm addEditContactForm = new AddEditContactForm();
+            var dialogResult = addEditContactForm.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                Contact contact = addEditContactForm.CurrentContact;
+                ContactsProject.Contacts.Add(contact);
+                RecreateContactList(ContactsProject.Contacts.ToArray().Length - 1);
+            }
+        }
+        private void EditContactButton_Click(object sender, EventArgs e)
+        {
+            AddEditContactForm addEditContactForm = new AddEditContactForm();
+            Contact contact = ContactsProject.Contacts[ContactsListBox.SelectedIndex];
+            addEditContactForm.CurrentContact = contact;
+            var dialogResult = addEditContactForm.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                RecreateContactList(ContactsListBox.SelectedIndex);
+            }
+        }
+        private void RemoveContactButton_Click(object sender, EventArgs e)
+        {
+            ContactsProject.Contacts.Remove(ContactsProject.Contacts[ContactsListBox.SelectedIndex]);
+            RecreateContactList();
+        }
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var aboutForm = new AboutProgramForm();
+            aboutForm.ShowDialog();
+        }
+        private void ContactsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var contact = ContactsProject.Contacts[ContactsListBox.SelectedIndex];
 
             nameTextBox.Text = contact.Name;
             surnameTextBox.Text = contact.Surname;
             emailTextBox.Text = contact.Email;
             VKTextBox.Text = contact.IdVK;
-            birthDateTime.Value = contact.BirthDate;
+            birthTextBox.Text = contact.BirthDate.ToString("d");
             phoneTextBox.Text = contact.ContactNumber.Number.ToString();
         }
-
     }
 }

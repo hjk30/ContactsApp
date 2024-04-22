@@ -76,13 +76,14 @@
       <DependentUpon>AddEditContactForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -102,6 +103,18 @@
       <Project>{0ac2d48b-4998-497c-8417-cf53c1e8a041}</Project>
       <Name>ContactsApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddContactImage.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditContactIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RemoveContactIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddContactIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

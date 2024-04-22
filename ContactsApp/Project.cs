@@ -8,9 +8,9 @@ namespace ContactsApp
 {
     public class Project
     {
-        private Dictionary<string, Contact> _contacts;
-        public Dictionary<string, Contact> Contacts { get => _contacts; set => _contacts = value; }
-        public Project(Dictionary<string, Contact> contacts)
+        private List<Contact> _contacts;
+        public List<Contact> Contacts { get => _contacts; set => _contacts = value; }
+        public Project(List<Contact> contacts)
         {
             Contacts = contacts;
         }
