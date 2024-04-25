@@ -41,6 +41,7 @@
             this.SearchLabel = new System.Windows.Forms.Label();
             this.ContactsListBox = new System.Windows.Forms.ListBox();
             this.CurrentContactTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.birthTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.surnameTextBox = new System.Windows.Forms.TextBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
@@ -56,7 +57,6 @@
             this.removeContactToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.birthTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -202,9 +202,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchTextBox.Location = new System.Drawing.Point(58, 4);
             this.SearchTextBox.Name = "SearchTextBox";
+            this.SearchTextBox.ReadOnly = true;
             this.SearchTextBox.Size = new System.Drawing.Size(146, 20);
             this.SearchTextBox.TabIndex = 13;
-            this.SearchTextBox.Text = "Шифман";
+            this.SearchTextBox.Text = "ПОКА НЕ РЕАЛИЗОВАНО";
             // 
             // SearchLabel
             // 
@@ -258,6 +259,17 @@
             this.CurrentContactTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.CurrentContactTableLayoutPanel.Size = new System.Drawing.Size(337, 125);
             this.CurrentContactTableLayoutPanel.TabIndex = 13;
+            // 
+            // birthTextBox
+            // 
+            this.birthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.birthTextBox.Location = new System.Drawing.Point(73, 43);
+            this.birthTextBox.Name = "birthTextBox";
+            this.birthTextBox.ReadOnly = true;
+            this.birthTextBox.Size = new System.Drawing.Size(261, 20);
+            this.birthTextBox.TabIndex = 15;
+            this.birthTextBox.Text = "30.09.2003";
             // 
             // label7
             // 
@@ -351,7 +363,7 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -367,21 +379,21 @@
             // addContactToolStripMenuItem
             // 
             this.addContactToolStripMenuItem.Name = "addContactToolStripMenuItem";
-            this.addContactToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addContactToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.addContactToolStripMenuItem.Text = "Add Contact";
             this.addContactToolStripMenuItem.Click += new System.EventHandler(this.AddContactButton_Click);
             // 
             // editContactToolStripMenuItem
             // 
             this.editContactToolStripMenuItem.Name = "editContactToolStripMenuItem";
-            this.editContactToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editContactToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.editContactToolStripMenuItem.Text = "Edit Contact";
             this.editContactToolStripMenuItem.Click += new System.EventHandler(this.EditContactButton_Click);
             // 
             // removeContactToolStripMenuItem
             // 
             this.removeContactToolStripMenuItem.Name = "removeContactToolStripMenuItem";
-            this.removeContactToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeContactToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.removeContactToolStripMenuItem.Text = "Remove Contact";
             this.removeContactToolStripMenuItem.Click += new System.EventHandler(this.RemoveContactButton_Click);
             // 
@@ -397,20 +409,9 @@
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // birthTextBox
-            // 
-            this.birthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.birthTextBox.Location = new System.Drawing.Point(73, 43);
-            this.birthTextBox.Name = "birthTextBox";
-            this.birthTextBox.ReadOnly = true;
-            this.birthTextBox.Size = new System.Drawing.Size(261, 20);
-            this.birthTextBox.TabIndex = 15;
-            this.birthTextBox.Text = "30.09.2003";
             // 
             // ContactAppForm
             // 
@@ -423,6 +424,7 @@
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "ContactAppForm";
             this.Text = "ContactApp";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ContactAppForm_FormClosed);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

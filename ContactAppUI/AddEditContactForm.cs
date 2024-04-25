@@ -13,14 +13,25 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace ContactAppUI
 {
+    /// <summary>
+    /// Форма, позволяющая добавлять новые и редоактировать текущие контакты
+    /// </summary>
     public partial class AddEditContactForm : Form
     {
         Contact _currentContact;
+        /// <summary>
+        /// Редактируемый/добавляемый контакт
+        /// </summary>
         public Contact CurrentContact { get => _currentContact; set => _currentContact = value; }
         public AddEditContactForm()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Обработчик события нажатия на кнопку "Ок"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             try
@@ -52,7 +63,11 @@ namespace ContactAppUI
                 MessageBox.Show(exc.Message);
             }
         }
-
+        /// <summary>
+        /// Обработчик события появления этой формы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddEditContactForm_Shown(object sender, EventArgs e)
         {
             if (CurrentContact != null)
@@ -65,7 +80,11 @@ namespace ContactAppUI
                 phoneTextBox.Text = CurrentContact.ContactNumber.Number.ToString();
             }
         }
-
+        /// <summary>
+        /// Обработчик события нажатия на кнопку "Отмена"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

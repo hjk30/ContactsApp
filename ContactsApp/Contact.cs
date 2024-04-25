@@ -41,6 +41,10 @@ namespace ContactsApp
                     {
                         _name = value;
                     }
+                    else
+                    {
+                        throw new ArgumentException("Слишком много символов для имени, должно быть короче 50");
+                    }
                 }
             }
         }
@@ -57,6 +61,10 @@ namespace ContactsApp
                     {
                         _surname = value;
                     }
+                    else
+                    {
+                        throw new ArgumentException("Слишком много символов для фамилии, должно быть короче 50");
+                    }
                 }
             }
         }
@@ -70,10 +78,15 @@ namespace ContactsApp
             {
                 if (_email != value)
                 {
-                    if (value.Length < 50)
+                    if (value.Length < 50 && value.Contains("@"))
                     {
                         _email = value;
                     }
+                    else if(value.Length >= 50)
+                    {
+                        throw new ArgumentException("Слишком много символов для email, должно быть короче 50");
+                    }
+                    else { throw new ArgumentException("Email должен содержать сивол @");  }
                 }
                 //дописать проверку на то что это имейл
             }
@@ -89,6 +102,10 @@ namespace ContactsApp
                     if (value.Length < 15)
                     {
                         _idVK = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Слишком много символов для id VK, должно быть короче 15");
                     }
                 }
             }

@@ -119,6 +119,7 @@
             this.surnameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.surnameTextBox.Location = new System.Drawing.Point(73, 3);
+            this.surnameTextBox.MaxLength = 50;
             this.surnameTextBox.Name = "surnameTextBox";
             this.surnameTextBox.Size = new System.Drawing.Size(358, 20);
             this.surnameTextBox.TabIndex = 1;
@@ -149,6 +150,7 @@
             this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nameTextBox.Location = new System.Drawing.Point(73, 23);
+            this.nameTextBox.MaxLength = 50;
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(358, 20);
             this.nameTextBox.TabIndex = 4;
@@ -171,6 +173,7 @@
             this.phoneTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.phoneTextBox.Location = new System.Drawing.Point(73, 63);
+            this.phoneTextBox.MaxLength = 11;
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(358, 20);
             this.phoneTextBox.TabIndex = 6;
@@ -180,6 +183,7 @@
             this.emailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.emailTextBox.Location = new System.Drawing.Point(73, 83);
+            this.emailTextBox.MaxLength = 50;
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(358, 20);
             this.emailTextBox.TabIndex = 8;
@@ -189,9 +193,10 @@
             this.VKTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.VKTextBox.Location = new System.Drawing.Point(73, 103);
+            this.VKTextBox.MaxLength = 10;
             this.VKTextBox.Name = "VKTextBox";
             this.VKTextBox.Size = new System.Drawing.Size(358, 20);
-            this.VKTextBox.TabIndex = 10;
+            this.VKTextBox.TabIndex = 15;
             // 
             // label4
             // 
@@ -230,7 +235,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 207);
+            this.ClientSize = new System.Drawing.Size(462, 181);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.CurrentContactTableLayoutPanel);
