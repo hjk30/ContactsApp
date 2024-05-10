@@ -25,7 +25,7 @@ namespace ContactsAppTest
             var number = new PhoneNumber(77777777777);
             Assert.Throws<ArgumentException>(
             () => { number.Number = wrongNumber; },
-            "Должно возникать исключение, если фамилия длиннее 40 символов");
+            message);
         }
 
 
