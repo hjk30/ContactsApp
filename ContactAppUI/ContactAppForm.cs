@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,21 +28,22 @@ namespace ContactAppUI
             InitializeComponent();
             //SaveAll();
             ContactsProject = ProjectManager.LoadFromFile();
-            RecreateContactList();
+            CreateContactList();
         }
         /// <summary>
         /// Пересоздаёт лист со всеми контактами
         /// </summary>
         /// <param name="defaultSelectedIndex">номер контакта, который будет выделен после пересоздания</param>
-        void RecreateContactList(int defaultSelectedIndex = 0)
+        void CreateContactList()
         {
             var contactNames = ContactsProject.Contacts.ToArray();
             ContactsListBox.Items.Clear();
             for (int i = 0; i < contactNames.Length; i++)
             {
-                ContactsListBox.Items.Add(contactNames[i].Surname + " " + contactNames[i].Name);
+                ContactsListBox.Items.Add(ContactsProject.Contacts[i]);
+                ContactsListBox.DisplayMember = ContactsProject.Contacts[i].ToString();
             }
-            ContactsListBox.SelectedIndex = defaultSelectedIndex;
+            ContactsListBox.SelectedIndex = 0;
         }
         /// <summary>
         /// Обработка кнопки "Добавить контакт"
@@ -56,7 +58,9 @@ namespace ContactAppUI
             {
                 Contact contact = addEditContactForm.CurrentContact;
                 ContactsProject.Contacts.Add(contact);
-                RecreateContactList(ContactsProject.Contacts.ToArray().Length - 1);
+                ContactsListBox.Items.Add(contact);
+                ContactsListBox.DisplayMember = contact.ToString();
+                ContactsListBox.SelectedIndex = ContactsProject.Contacts.ToArray().Length - 1;
                 ProjectManager.SaveToFile(ContactsProject);
             }
         }
@@ -68,12 +72,15 @@ namespace ContactAppUI
         private void EditContactButton_Click(object sender, EventArgs e)
         {
             AddEditContactForm addEditContactForm = new AddEditContactForm();
-            Contact contact = ContactsProject.Contacts[ContactsListBox.SelectedIndex];
+            Contact contact = (Contact)ContactsListBox.SelectedItem;
+            var oldContactIndex = ContactsListBox.SelectedIndex;
             addEditContactForm.CurrentContact = contact;
             var dialogResult = addEditContactForm.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
-                RecreateContactList(ContactsListBox.SelectedIndex);
+                ContactsListBox.SelectedItem = (contact);
+                ContactsListBox.DisplayMember = contact.ToString();
+                ContactsListBox.SelectedIndex = oldContactIndex;
             }
         }
         /// <summary>
@@ -83,8 +90,10 @@ namespace ContactAppUI
         /// <param name="e"></param>
         private void RemoveContactButton_Click(object sender, EventArgs e)
         {
-            ContactsProject.Contacts.Remove(ContactsProject.Contacts[ContactsListBox.SelectedIndex]);
-            RecreateContactList();
+            Contact contact = (Contact)ContactsListBox.SelectedItem;
+            ContactsListBox.SelectedIndex = 0;
+            ContactsProject.Contacts.Remove(contact);
+            ContactsListBox.Items.Remove(contact);
             ProjectManager.SaveToFile(ContactsProject);
         }
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -99,7 +108,7 @@ namespace ContactAppUI
         /// <param name="e"></param>
         private void ContactsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var contact = ContactsProject.Contacts[ContactsListBox.SelectedIndex];
+            var contact = (Contact)ContactsListBox.SelectedItem;
 
             nameTextBox.Text = contact.Name;
             surnameTextBox.Text = contact.Surname;

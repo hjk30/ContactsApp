@@ -144,5 +144,10 @@ namespace ContactsApp
         {
             return new Contact(Name, Surname, Email, IdVK, BirthDate, ContactNumber);
         }
+
+        public override string ToString()
+        {
+            return Surname + " " + Name;
+        }
     }
 }
