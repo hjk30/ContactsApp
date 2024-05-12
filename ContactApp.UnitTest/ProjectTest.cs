@@ -24,7 +24,6 @@ namespace ContactApp.UnitTests
         [Test(Description = "Присвоение верного списка")]
         public void TestContactsSet_CorrectString()
         {
-            var expected = new PhoneNumber(77777777777);
             Assert.DoesNotThrow(
             () => {
                 List<Contact> contacts = new List<Contact>();
