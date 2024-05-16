@@ -16,7 +16,7 @@ namespace ContactsApp
         /// <summary>
         /// Путь к файлу сохранения проекта с контактами
         /// </summary>
-        private const string SaveFilePath = @".\SaveTest.json";
+        private const string SaveFilePath = @".\Contacts.json";
         /// <summary>
         /// Метод, сохраняющий в файл проект с контактами
         /// </summary>
